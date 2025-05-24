@@ -6,14 +6,30 @@ import './styles/index.scss';
 import MainPage from './Pages/MainPage/index.jsx';
 import Preview from './Pages/Preview/Preview.jsx';
 
+import HistoricalPage from './Pages/HistoricalPage/index.jsx';
+import PolarPage from './Pages/HistoricalPage/PolarPage/index.jsx';
+import DornPage from './Pages/HistoricalPage/DornPage/index.jsx';
+
 const router = createBrowserRouter([
     // {
     //     path: '/',
     //     element: <Preview />,
     // },
     {
-        path: '/',
+        path: '/main',
         element: <MainPage />,
+    },
+    {
+        path: '/history',
+        element: <HistoricalPage />,
+    },
+    {
+        path: '/polar',
+        element: <PolarPage />,
+    },
+    {
+        path: '/dorn',
+        element: <DornPage />,
     },
 ]);
 
