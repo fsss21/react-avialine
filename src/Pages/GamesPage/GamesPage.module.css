@@ -13,20 +13,24 @@
 .buttons {
     display: flex;
     position: absolute;
-    gap: 25px;
-    top: 39%;
+    gap: 15px;
+    top: 33%;
     left: 50%;
     transform: translate(-50%, 15%);
 }
 
 .button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-left: 25px;
     margin-right: 25px;
     width: 350px;
     height: 350px;
     border-radius: 50%;
     border: none;
-    outline: 3px dashed rgba(65, 108, 112, 1) !important;
+    outline: 3px dashed rgba(255, 255, 255, 1) !important;
     outline-offset: 15px;
     font-family: 'Snowstorm', arial;
     font-size: 43px;

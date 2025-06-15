@@ -3,10 +3,25 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import './styles/index.scss';
 
+import { Provider } from 'react-redux';
+import store from './store/store';
+import AccessibilityHandler from './components/AccessibilityHandler';
+import { LanguageProvider } from './LanguageContext';
+
+import FilmsPage from './Pages/FilmsPage/index.jsx';
+import PersonaliPage from './Pages/PersonaliPage/index.jsx';
+import PersonDetail from './Pages/PersonaliPage/PersonDetail/index.jsx';
+
+import GamesPage from './Pages/GamesPage/index.jsx';
+import PuzzlePage from './Pages/GamesPage/PuzzlePage/index.jsx';
+import CrosswordPage from './Pages/GamesPage/CrosswordPage/index.jsx';
+import QuizPage from './Pages/GamesPage/QuizPage/index.jsx';
+import CongratsPage from './Pages/GamesPage/CongratsPage/index.jsx';
+import CertificateFormPage from './Pages/GamesPage/CertificateFormPage/index.jsx';
+import ThanksPage from './Pages/GamesPage/ThanksPage/index.jsx';
+
 import MainPage from './Pages/MainPage/index.jsx';
 import Preview from './Pages/Preview/Preview.jsx';
-import GamesPage from './Pages/GamesPage/index.jsx';
-import CrosswordPage from './Pages/GamesPage/CrosswordPage/index.jsx';
 
 import HistoricalPage from './Pages/HistoricalPage/index.jsx';
 import PolarPage from './Pages/HistoricalPage/PolarPage/index.jsx';
@@ -26,12 +41,12 @@ const router = createBrowserRouter([
         element: <HistoricalPage />,
     },
     {
-        path: '/games',
-        element: <GamesPage />,
+        path: 'films',
+        element: <FilmsPage />,
     },
     {
-        path: '/crossword',
-        element: <CrosswordPage />,
+        path: '/games',
+        element: <GamesPage />,
     },
     {
         path: '/polar',
@@ -41,11 +56,55 @@ const router = createBrowserRouter([
         path: '/dorn',
         element: <DornPage />,
     },
+    {
+        path: 'personali',
+        children: [
+            {
+                index: true,
+                element: <PersonaliPage />,
+            },
+            {
+                path: ':id',
+                element: <PersonDetail />,
+            },
+        ],
+    },
+    {
+        path: '/crossword',
+        element: <CrosswordPage />,
+    },
+    {
+        path: 'puzzle',
+        element: <PuzzlePage />,
+    },
+    {
+        path: 'quiz',
+        element: <QuizPage />,
+    },
+    {
+        path: 'congrats',
+        element: <CongratsPage />,
+    },
+    {
+        path: 'certificate-form',
+        element: <CertificateFormPage />,
+    },
+    {
+        path: 'thanks',
+        element: <ThanksPage />,
+    },
+    {
+        path: '*',
+        element: <div>Страница не найдена</div>,
+    },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <RouterProvider router={router} />
-    </React.StrictMode>
+    <LanguageProvider>
+        <Provider store={store}>
+            <AccessibilityHandler />
+            <RouterProvider router={router} />
+        </Provider>
+    </LanguageProvider>
 );
